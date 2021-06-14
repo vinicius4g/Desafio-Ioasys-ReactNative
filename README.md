@@ -30,9 +30,9 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 -"lottie-react-native": "3.5.0", -> Usado para fazer a animação dos loadings presentes nesse app.
 
--"styled-components": "^5.3.0" -> Usado para estilizar a aplicação, deixando um codigo mais orgazinado. Permite usar CSS dentro de um código JS.
+-"styled-components": "^5.3.0" -> Usado para estilizar a aplicação, deixando um código mais orgazinado. Permite usar CSS dentro de um código JS.
 
--"expo e seus derivados" -> Ferramenta utilizada para facilitar o desenvolvimento dessa aplicação de forma a fornercer uma soluçao híbrida independente de seu sistema operacional.
+-"expo e seus derivados" -> Ferramenta utilizada para facilitar o desenvolvimento dessa aplicação de forma a fornercer uma solução híbrida independente de seu sistema operacional.
 
 
 
@@ -42,7 +42,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - Rode `yarn install` para instalar as dependências.
 - Rode o `expo start` ou `yarn start` para iniciar a aplicação.
 
--Obs a Collection estava na v1 o Postman na versao mais recente só esta aceitando collection na V2 entao colequei atualizei o arquivo e armazenei dentro da pasta newCollection.
+-Obs a Collection estava na v1 o Postman na versão mais recente só esta aceitando collection na V2 entao colequei atualizei o arquivo e armazenei dentro da pasta newCollection.
 
 
 
