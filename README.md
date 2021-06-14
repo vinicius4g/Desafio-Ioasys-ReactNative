@@ -42,7 +42,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - Rode `yarn install` para instalar as dependências.
 - Rode o `expo start` ou `yarn start` para iniciar a aplicação.
 
--Obs a Collection estava na v1 o Postman na versão mais recente só esta aceitando collection na V2 entao colequei atualizei o arquivo e armazenei dentro da pasta newCollection.
+-Obs a Collection estava na v1, o Postman na versão mais recente só esta aceitando collection na V2, então atualizei o arquivo e armazenei dentro da pasta newCollection.
 
 
 
