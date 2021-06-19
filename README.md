@@ -12,7 +12,6 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 - [React Native](https://reactnative.dev/docs/getting-started)
 - [Expo](https://docs.expo.io/)
-- [Firebase](https://firebase.google.com/docs)
 - [Styled-Components](https://styled-components.com/docs)
 
 
