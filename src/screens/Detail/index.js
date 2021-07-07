@@ -20,20 +20,30 @@ import {
 } from './styles'
 
 import { Header } from '../../components/Header'
+import { Load } from '../../components/Load'
 
 export function Detail() {
-    const { enterpriseDetail  } = useContext(SearchContext)
+    const { enterpriseDetail, loadingSearch  } = useContext(SearchContext)
     let apiUri = 'https://empresas.ioasys.com.br/'
-    
-    if(enterpriseDetail === undefined){
+
+    if(loadingSearch){
+        return (
+            <Load />
+        )
+    }
+    else if(enterpriseDetail === undefined){
         return(
             <Container>
                 <Header title={'Detalhes da Empresa'}/>
+                <EnterpriseView>
+                    <Label>Nenhuma empresa selecionada  😅</Label> 
+                    
+                </EnterpriseView>
             </Container>
             
         )
     }
-    else{
+    else if(enterpriseDetail !== undefined){
         return (
             <Wrapper>
                 <Container>

@@ -9,7 +9,7 @@ export const Container = styled.View`
     height: 100%;
     justify-content: center;
     align-items: center;
-    background-color: ${commonStyles.colors.text_dark};
+    background-color: ${commonStyles.colors.shape};
 `;
 
 export const Animation = styled(LottieView)`

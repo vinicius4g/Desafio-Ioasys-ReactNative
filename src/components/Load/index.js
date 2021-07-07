@@ -4,7 +4,7 @@ import {
     Animation
 } from './styles';
 
-import loadAnimation from '../../assets/load.json'
+import loadAnimation from '../../assets/load2.json'
 
 export function Load(){
     return(

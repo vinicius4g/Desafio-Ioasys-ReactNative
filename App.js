@@ -16,7 +16,7 @@ import SearchProvider from './src/contexts/search'
 
 import { Load } from './src/components/Load'
 
-import { Routes } from './src/routes';
+import { Routes } from './src/routes'
 
 export default function App() {
 	const [fontsLoaded] = useFonts({
@@ -40,7 +40,3 @@ export default function App() {
 		</NavigationContainer>
 	);
 }
-
-//1:10:52 =order
-//1:20:03 -lootie
-//1:26:38 - pagincao

@@ -67,7 +67,6 @@ export const NameCountry = styled.Text`
 export const NameCity = styled.Text`
     margin-top: 28px;
     margin-bottom: 10px;
-    margin-left: 50px;
 
     font-family: ${commonStyles.fonts.medium};
     font-size: 20px;
