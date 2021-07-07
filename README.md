@@ -12,7 +12,6 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 - [React Native](https://reactnative.dev/docs/getting-started)
 - [Expo](https://docs.expo.io/)
-- [Firebase](https://firebase.google.com/docs)
 - [Styled-Components](https://styled-components.com/docs)
 
 
@@ -20,10 +19,10 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 -"@expo-google-fonts/poppins": "^0.1.0", -> Foi usada para aplicar fonte as palavras.
 
--@react-native-async-storage/async-storage": "^1.13.0", -> Usado para armazenar informações localmente e persitir os dados.
+-@react-native-async-storage/async-storage": "^1.13.0", -> Usado para armazenar informações localmente e persistir os dados.
 
 "@react-navigation/bottom-tabs": "^5.11.11",
-"@react-navigation/native": "^5.9.4",    		-> Foram usadas para navegação do app.
+"@react-navigation/native": "^5.9.4",    		-> Foram usadas para a navegação do app.
 "@react-navigation/stack": "^5.14.5",
 
 -"axios": "^0.21.1", -> Foi usado para fazer a comunicação com a API
@@ -42,7 +41,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - Rode `yarn install` para instalar as dependências.
 - Rode o `expo start` ou `yarn start` para iniciar a aplicação.
 
--Obs a Collection estava na v1 o Postman na versão mais recente só esta aceitando collection na V2 entao colequei atualizei o arquivo e armazenei dentro da pasta newCollection.
+-Obs a Collection estava na v1, o Postman na versão mais recente só esta aceitando collection na V2, então atualizei o arquivo e armazenei dentro da pasta newCollection.
 
 
 
