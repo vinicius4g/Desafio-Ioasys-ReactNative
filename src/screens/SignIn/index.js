@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react'
+import { Feather } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
 import { AuthContext } from '../../contexts/auth'
 
@@ -13,14 +14,17 @@ import {
     Background,
     Container,
     Logo,
-    AreaInput, 
+    AreaInput,
+    AreaInputIcon,
+    ButtonShowPassword,
     SubmitButton,
     SubmitText,
     Link,
     LinkText,
 } from './styles'
 
-import { Input } from '../../components/Input'
+
+import { InputSignIn } from '../../components/InputSignIn'
 
 
 export function SignIn(){
@@ -28,7 +32,13 @@ export function SignIn(){
     
     const [email, setEmail] = useState('')
     const [password, setPassword ] = useState('')
+    const [visiblePassword, setVisiblePassword] = useState(true)
+
     const { signIn} = useContext(AuthContext)
+
+    function handleShowPassword(){
+        setVisiblePassword(!visiblePassword)
+    }
 
     function handleLogin(){
         if(email === '')
@@ -50,7 +60,7 @@ export function SignIn(){
                     <Logo source={require('../../assets/logo_ioasys.png')} />
 
                     <AreaInput>
-                        <Input 
+                        <InputSignIn 
                             placeholder="Email"
                             autoCorrect={false}
                             autoCapitalize="none"
@@ -58,17 +68,31 @@ export function SignIn(){
                             onChangeText={setEmail}
                             autoCorrect={false}
                         />
+                        <AreaInputIcon>
+                            <Feather
+                                name="user"
+                                color="gray"
+                                size={20}
+                            />	 
+                        </AreaInputIcon>
                     </AreaInput>
 
                     <AreaInput>
-                        <Input 
+                        <InputSignIn 
                             placeholder="Senha"
                             autoCorrect={false}
                             autoCapitalize="none"
                             value={password}
                             onChangeText={setPassword}
-                            secureTextEntry={true}
+                            secureTextEntry={visiblePassword}
                         />
+                        <ButtonShowPassword onPress={handleShowPassword}>
+                            <Feather
+                                name={visiblePassword === true ? "eye" : "eye-off"}
+                                color="gray"
+                                size={20}
+                            />	 
+                        </ButtonShowPassword>
                     </AreaInput>
 
                     <SubmitButton onPress={handleLogin}>

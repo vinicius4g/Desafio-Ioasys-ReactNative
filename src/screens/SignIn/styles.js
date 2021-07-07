@@ -16,12 +16,26 @@ export const Logo = styled.Image`
     margin-bottom: 35px;
 `;
 
-export const AreaInput = styled.View` 
+export const AreaInput = styled.View`
     flex-direction: row;
+    background-color: ${commonStyles.colors.shape};
     margin-bottom: 16px;
     margin-right: 24px;
     margin-left: 24px;
+    border-radius: 5px;    
+`;
+
+export const AreaInputIcon = styled.View`
     align-items: center;
+    justify-content: center;
+    padding-right: 24px;
+`;
+
+
+export const ButtonShowPassword = styled.TouchableOpacity`
+    align-items: center;
+    justify-content: center;
+    padding-right: 24px;
 `;
 
 export const SubmitButton = styled.TouchableOpacity.attrs({
