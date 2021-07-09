@@ -1,9 +1,8 @@
-import React from 'react'
+import React from 'react';
 
-import { Container } from './styles'
+import { StyledContainer } from './styles';
 
-export function InputSignIn({...props}) {
-    return (
-        <Container {...props} />
-    )
+export function InputSignIn({ ...props }) {
+  // eslint-disable-next-line react/jsx-props-no-spreading
+  return <StyledContainer {...props} />;
 }

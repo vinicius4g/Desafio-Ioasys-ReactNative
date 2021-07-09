@@ -1,110 +1,103 @@
-import React, { useState, useContext } from 'react'
-import { Feather } from '@expo/vector-icons'
-import { useNavigation } from '@react-navigation/native'
-import { AuthContext } from '../../contexts/auth'
+import React, { useState, useContext } from 'react';
+import { Feather } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
-import { 
-    Platform, 
-    TouchableWithoutFeedback, 
-    Keyboard, 
-    Alert
-} from 'react-native'
+import {
+  Platform,
+  TouchableWithoutFeedback,
+  Keyboard,
+  Alert
+} from 'react-native';
 
-import { 
-    Background,
-    Container,
-    Logo,
-    AreaInput,
-    AreaInputIcon,
-    ButtonShowPassword,
-    SubmitButton,
-    SubmitText,
-    Link,
-    LinkText,
-} from './styles'
+import {
+  StyledBackground,
+  StyledContainer,
+  StyledLogo,
+  StyledAreaInput,
+  StyledButtonShowPassword,
+  StyledSubmitButton,
+  StyledSubmitText,
+  StyledButtonLink,
+  StyledLinkText
+} from './styles';
+import { AuthContext } from '../../contexts/auth';
 
+import { InputSignIn } from '../../components/InputSignIn';
+import { Load } from '../../components/Load';
 
-import { InputSignIn } from '../../components/InputSignIn'
+const imgSource = require('../../assets/logo_ioasys.png');
 
+export function SignIn() {
+  const navigation = useNavigation();
 
-export function SignIn(){
-    const navigation = useNavigation()
-    
-    const [email, setEmail] = useState('')
-    const [password, setPassword ] = useState('')
-    const [visiblePassword, setVisiblePassword] = useState(true)
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [visiblePassword, setVisiblePassword] = useState(false);
 
-    const { signIn} = useContext(AuthContext)
+  const { signIn, loadingAuth } = useContext(AuthContext);
 
-    function handleShowPassword(){
-        setVisiblePassword(!visiblePassword)
-    }
+  function handleShowPassword() {
+    setVisiblePassword(!visiblePassword);
+  }
 
-    function handleLogin(){
-        if(email === '')
-            return Alert.alert('Campo email vazio 🤔')
+  function handleLogin() {
+    if (email === '') return Alert.alert('Campo email vazio 🤔');
 
-        if(password === '')
-            return Alert.alert('Campo senha vazio 🧐')
+    if (password === '') return Alert.alert('Campo senha vazio 🧐');
 
-        signIn(email, password)
-    }
-   
-    return(
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}> 
-            <Background>
-                <Container
-                    behavior={Platform.OS === 'ios' ? 'padding' : ''}
-                    enabled
-                >
-                    <Logo source={require('../../assets/logo_ioasys.png')} />
+    return signIn(email, password);
+  }
 
-                    <AreaInput>
-                        <InputSignIn 
-                            placeholder="Email"
-                            autoCorrect={false}
-                            autoCapitalize="none"
-                            value={email}
-                            onChangeText={setEmail}
-                            autoCorrect={false}
-                        />
-                        <AreaInputIcon>
-                            <Feather
-                                name="user"
-                                color="gray"
-                                size={20}
-                            />	 
-                        </AreaInputIcon>
-                    </AreaInput>
+  if (loadingAuth) {
+    return <Load />;
+  }
 
-                    <AreaInput>
-                        <InputSignIn 
-                            placeholder="Senha"
-                            autoCorrect={false}
-                            autoCapitalize="none"
-                            value={password}
-                            onChangeText={setPassword}
-                            secureTextEntry={visiblePassword}
-                        />
-                        <ButtonShowPassword onPress={handleShowPassword}>
-                            <Feather
-                                name={visiblePassword === true ? "eye" : "eye-off"}
-                                color="gray"
-                                size={20}
-                            />	 
-                        </ButtonShowPassword>
-                    </AreaInput>
+  return (
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <StyledBackground>
+        <StyledContainer
+          behavior={Platform.OS === 'ios' ? 'padding' : ''}
+          enabled
+        >
+          <StyledLogo source={imgSource} />
 
-                    <SubmitButton onPress={handleLogin}>
-                        <SubmitText>Acessar</SubmitText>                 
-                    </SubmitButton>
-                    
-                    <Link onPress={ () => navigation.navigate('SignUp') } >
-                        <LinkText>Criar uma conta</LinkText>
-                    </Link>    
-            
-                </Container>
-            </Background>
-        </TouchableWithoutFeedback>
-    )
+          <StyledAreaInput>
+            <InputSignIn
+              placeholder='Email'
+              autoCorrect={false}
+              autoCapitalize='none'
+              value={email}
+              onChangeText={setEmail}
+            />
+          </StyledAreaInput>
+
+          <StyledAreaInput>
+            <InputSignIn
+              placeholder='Senha'
+              autoCorrect={false}
+              autoCapitalize='none'
+              value={password}
+              onChangeText={setPassword}
+              secureTextEntry={!visiblePassword}
+            />
+            <StyledButtonShowPassword onPress={handleShowPassword}>
+              <Feather
+                name={visiblePassword === true ? 'eye' : 'eye-off'}
+                color='gray'
+                size={20}
+              />
+            </StyledButtonShowPassword>
+          </StyledAreaInput>
+
+          <StyledSubmitButton onPress={handleLogin}>
+            <StyledSubmitText>Acessar</StyledSubmitText>
+          </StyledSubmitButton>
+
+          <StyledButtonLink onPress={() => navigation.navigate('SignUp')}>
+            <StyledLinkText>Criar uma conta</StyledLinkText>
+          </StyledButtonLink>
+        </StyledContainer>
+      </StyledBackground>
+    </TouchableWithoutFeedback>
+  );
 }

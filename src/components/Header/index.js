@@ -1,12 +1,15 @@
-import React from 'react'
-import { HeaderView, Title } from './styles'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { StyledHeaderView, StyledTitle } from './styles';
 
 export function Header({ ...props }) {
-    return (
-       <HeaderView>
-           <Title>
-               {props && props.title}
-            </Title>
-       </HeaderView>
-    )
+  return (
+    <StyledHeaderView>
+      <StyledTitle>{props && props.title}</StyledTitle>
+    </StyledHeaderView>
+  );
 }
+
+Header.propTypes = {
+  title: PropTypes.string.isRequired
+};

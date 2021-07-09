@@ -1,94 +1,113 @@
-import React, { useState, createContext, useEffect } from 'react'
-import api from '../services/api'
-import AsyncStorage from '@react-native-async-storage/async-storage'
-import { Alert } from 'react-native'
+import React, { useState, createContext, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Alert } from 'react-native';
+import api from '../services/api';
 
-export const AuthContext = createContext({})
+export const AuthContext = createContext({});
 
 function AuthProvider({ children }) {
-    
-    const [user, setUser] = useState(null)
-    const [header, setHeader] = useState(null)
-    const [loading, setLoading] = useState(true)
-    const [loadingAuth, setLoadingAuth] = useState(false)
+  const [user, setUser] = useState(null);
+  const [header, setHeader] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [loadingAuth, setLoadingAuth] = useState(false);
 
-   //conferindo se tem algum usuario logado
-    useEffect(() => {
-        async function loadStorage(){
-            const storageUser = await AsyncStorage.getItem('Auth_user')
-            const storageHeader = await AsyncStorage.getItem('Header_user')
+  // funcao para salvar os dados do usuario no async storage
+  async function storageUser(data) {
+    await AsyncStorage.setItem('Auth_user', JSON.stringify(data));
+  }
 
-            if(storageUser){
-                setUser(JSON.parse(storageUser))
-                
-                if(storageHeader){
-                    setHeader(JSON.parse(storageHeader))
-                }
-                setLoading(false)
-            }
+  // funcao para salvar os headers, para fazer as outras req
+  async function headerUser(dataHeader) {
+    await AsyncStorage.setItem('Header_user', JSON.stringify(dataHeader));
+  }
 
-            setLoading(false)
+  // conferindo se tem algum usuario logado
+  useEffect(() => {
+    async function loadStorage() {
+      const storageUserData = await AsyncStorage.getItem('Auth_user');
+      const storageHeader = await AsyncStorage.getItem('Header_user');
+
+      if (storageUserData) {
+        setUser(JSON.parse(storageUserData));
+
+        if (storageHeader) {
+          setHeader(JSON.parse(storageHeader));
         }
-    
-        loadStorage()
+        setLoading(false);
+      }
 
-    },[])
-    
-    //funcao de logar
-    function signIn(email, password) {
-        setLoadingAuth(true)
-
-		let data = {
-			email, 
-            password, 
-		}
-		
-		api.post(`api/v1/users/auth/sign_in`, data, {headers:{"Content-Type" : "application/json"}})
-        .then( async  (value) => {
-            const dataHeader = {
-                access_token: value.headers['access-token'],
-                uid: value.headers.uid,
-                client: value.headers.client
-            }   
-            setHeader(dataHeader)
-            headerUser(dataHeader)
-            // console.log(dataHeader)
-            
-            const storageData = value.data
-            setUser(storageData)
-            storageUser(storageData)
-
-            setLoadingAuth(false)
-        })
-        .catch( (error) => {
-            setLoadingAuth(false)
-            Alert.alert('Não foi possível fazer o login tente novamente 😢!')
-        })
+      setLoading(false);
     }
 
-    //funcao de deslogar 
-    async function signOut(){
-        await AsyncStorage.clear()
-        .then( () => {
-            setUser(null)
-        })
-    }
-    
-    //funcao para salvar os dados do usuario no async storage
-    async function storageUser(data){
-        await AsyncStorage.setItem('Auth_user', JSON.stringify(data))
-    }
+    loadStorage();
+  }, []);
 
-    //funcao para salvar os headers, para fazer as outras req
-    async function headerUser(dataHeader){
-        await AsyncStorage.setItem('Header_user', JSON.stringify(dataHeader))
-    }
+  // funcao de logar
+  function signIn(email, password) {
+    setLoadingAuth(true);
 
-    return(
-        <AuthContext.Provider value={{ signed: !!user, user, header, loading, loadingAuth, signIn, signOut }}>
-            {children}
-        </AuthContext.Provider>
-    )
+    const data = {
+      email,
+      password
+    };
+
+    api
+      .post(`api/v1/users/auth/sign_in`, data, {
+        headers: { 'Content-Type': 'application/json' }
+      })
+      .then(async value => {
+        const dataHeader = {
+          access_token: value.headers['access-token'],
+          uid: value.headers.uid,
+          client: value.headers.client
+        };
+        setHeader(dataHeader);
+        headerUser(dataHeader);
+        // console.log(dataHeader)
+
+        const storageData = value.data;
+        setUser(storageData);
+        storageUser(storageData);
+
+        setLoadingAuth(false);
+      })
+      .catch(error => {
+        setLoadingAuth(false);
+        // eslint-disable-next-line no-console
+        console.log(error);
+        Alert.alert('Não foi possível fazer o login tente novamente 😢!');
+      });
+  }
+
+  // funcao de deslogar
+  async function signOut() {
+    setLoadingAuth(true);
+    await AsyncStorage.clear().then(() => {
+      setUser(null);
+      setLoadingAuth(false);
+    });
+  }
+
+  return (
+    <AuthContext.Provider
+      value={{
+        signed: !!user,
+        user,
+        header,
+        loading,
+        loadingAuth,
+        signIn,
+        signOut
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 }
 
-export default AuthProvider
+export default AuthProvider;
+
+AuthProvider.propTypes = {
+  children: PropTypes.node.isRequired
+};

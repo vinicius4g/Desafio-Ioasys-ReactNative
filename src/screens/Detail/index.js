@@ -1,84 +1,84 @@
-import React, { useContext } from 'react'
+import React, { useContext } from 'react';
+import {
+  StyledContainer,
+  StyledEnterpriseView,
+  StyledLabel,
+  StyledWrapper,
+  StyledName,
+  StyledPlaceView,
+  StyledNameCountry,
+  StyledNameCity,
+  StyledDescriptionView,
+  StyledLabelDescription,
+  StyledDescriptionText,
+  StyledEnterprisePhotoView,
+  StyledPhotoSpace,
+  StyledPhoto
+} from './styles';
 
-import { SearchContext } from '../../contexts/search'
+import { SearchContext } from '../../contexts/search';
 
-import { 
-    Wrapper,
-    Container, 
-    EnterpriseView,
-    Label,
-    Name,
-    PlaceView,
-    NameCountry,
-    NameCity,
-    DescriptionView,
-    LabelDescription,
-    DescriptionText,
-    EnterprisePhotoView,
-    PhotoSpace,
-    Photo
-} from './styles'
-
-import { Header } from '../../components/Header'
-import { Load } from '../../components/Load'
+import { Header } from '../../components/Header';
+import { Load } from '../../components/Load';
 
 export function Detail() {
-    const { enterpriseDetail, loadingSearch  } = useContext(SearchContext)
-    let apiUri = 'https://empresas.ioasys.com.br/'
+  const { enterpriseDetail, loadingSearch } = useContext(SearchContext);
+  const apiUri = 'https://empresas.ioasys.com.br/';
 
-    if(loadingSearch){
-        return (
-            <Load />
-        )
-    }
-    else if(enterpriseDetail === undefined){
-        return(
-            <Container>
-                <Header title={'Detalhes da Empresa'}/>
-                <EnterpriseView>
-                    <Label>Nenhuma empresa selecionada  😅</Label> 
-                    
-                </EnterpriseView>
-            </Container>
-            
-        )
-    }
-    else if(enterpriseDetail !== undefined){
-        return (
-            <Wrapper>
-                <Container>
-                    <Header title={'Detalhes da Empresa'}/>
-                    
-                    <EnterpriseView>
-                        <Label>Nome: </Label> 
-                        <Name>{enterpriseDetail.enterprise.enterprise_name}</Name>
-                    </EnterpriseView>
-                    
-                    <PlaceView>
-                        <NameCountry>País: </NameCountry> 
-                        <Name>{enterpriseDetail.enterprise.country}</Name>
-                        <NameCity>Cidade: </NameCity> 
-                        <Name>{enterpriseDetail.enterprise.city}</Name>
-                    </PlaceView>
-                    
-                    <DescriptionView>
-                        <LabelDescription>Descrição da Empresa: </LabelDescription>  
-                        <DescriptionText>{enterpriseDetail.enterprise.description}</DescriptionText>               
-                    </DescriptionView>
-                   
-                    <EnterprisePhotoView>
-                        <Label>Foto disponibilizada:</Label> 
-                        <PhotoSpace>
-                            { enterpriseDetail && 
-                                <Photo 
-                                    source={{ uri: apiUri+enterpriseDetail.enterprise.photo }}
-                                />                       
-                            }
-                        </PhotoSpace>
-                    </EnterprisePhotoView>
-                    
-                </Container>
-            </Wrapper>
-        )
-    }
+  if (loadingSearch) {
+    return <Load />;
+  }
+  if (enterpriseDetail === undefined) {
+    return (
+      <StyledContainer>
+        <Header title='Detalhes da Empresa' />
+        <StyledEnterpriseView>
+          <StyledLabel>Nenhuma empresa selecionada 😅</StyledLabel>
+        </StyledEnterpriseView>
+      </StyledContainer>
+    );
+  }
+  if (enterpriseDetail !== undefined) {
+    return (
+      <StyledWrapper>
+        <StyledContainer>
+          <Header title='Detalhes da Empresa' />
+
+          <StyledEnterpriseView>
+            <StyledLabel>Nome: </StyledLabel>
+            <StyledName>
+              {enterpriseDetail.enterprise.enterprise_name}
+            </StyledName>
+          </StyledEnterpriseView>
+
+          <StyledPlaceView>
+            <StyledNameCountry>País: </StyledNameCountry>
+            <StyledName>{enterpriseDetail.enterprise.country}</StyledName>
+            <StyledNameCity>Cidade: </StyledNameCity>
+            <StyledName>{enterpriseDetail.enterprise.city}</StyledName>
+          </StyledPlaceView>
+
+          <StyledDescriptionView>
+            <StyledLabelDescription>
+              Descrição da Empresa:{' '}
+            </StyledLabelDescription>
+            <StyledDescriptionText>
+              {enterpriseDetail.enterprise.description}
+            </StyledDescriptionText>
+          </StyledDescriptionView>
+
+          <StyledEnterprisePhotoView>
+            <StyledLabel>Foto disponibilizada:</StyledLabel>
+            <StyledPhotoSpace>
+              {enterpriseDetail && (
+                <StyledPhoto
+                  source={{ uri: apiUri + enterpriseDetail.enterprise.photo }}
+                />
+              )}
+            </StyledPhotoSpace>
+          </StyledEnterprisePhotoView>
+        </StyledContainer>
+      </StyledWrapper>
+    );
+  }
 }
