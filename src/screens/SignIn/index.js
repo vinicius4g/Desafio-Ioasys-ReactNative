@@ -3,7 +3,8 @@ import {
   Platform,
   TouchableWithoutFeedback,
   Keyboard,
-  Alert
+  Alert,
+  ActivityIndicator
 } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
@@ -22,7 +23,7 @@ import {
 import { AuthContext } from '../../contexts/auth';
 
 import { InputSignIn } from '../../components/InputSignIn';
-import { Load } from '../../components/Load';
+import CommonStyles from '../../global/CommonStyles';
 
 const imgSource = require('../../assets/images/logo_ioasys.png');
 
@@ -45,10 +46,6 @@ export function SignIn() {
     if (password === '') return Alert.alert('Campo senha vazio 🧐');
 
     return signIn(email, password);
-  }
-
-  if (loadingAuth) {
-    return <Load />;
   }
 
   return (
@@ -89,7 +86,14 @@ export function SignIn() {
           </StyledAreaInput>
 
           <StyledSubmitButton onPress={handleLogin}>
-            <StyledSubmitText>Acessar</StyledSubmitText>
+            {!loadingAuth ? (
+              <StyledSubmitText>Acessar</StyledSubmitText>
+            ) : (
+              <ActivityIndicator
+                size='small'
+                color={CommonStyles.colors.shape}
+              />
+            )}
           </StyledSubmitButton>
 
           <StyledButtonLink onPress={() => navigation.navigate('SignUp')}>
