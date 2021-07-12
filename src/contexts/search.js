@@ -2,7 +2,7 @@ import React, { useState, createContext, useContext } from 'react';
 import { Alert } from 'react-native';
 import PropTypes from 'prop-types';
 import { AuthContext } from './auth';
-import api from '../services/api';
+import api from '../utils/services/api';
 
 export const SearchContext = createContext({});
 // * Listagem de Empresas: `/enterprises`

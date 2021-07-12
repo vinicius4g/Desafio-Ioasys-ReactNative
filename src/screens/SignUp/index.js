@@ -10,7 +10,7 @@ import {
   StyledIcon
 } from './styles';
 
-const imgSource = require('../../assets/signUp.png');
+const imgSource = require('../../assets/images/signUp.png');
 
 export function SignUp() {
   const navigation = useNavigation();

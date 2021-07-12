@@ -24,7 +24,7 @@ import { AuthContext } from '../../contexts/auth';
 import { InputSignIn } from '../../components/InputSignIn';
 import { Load } from '../../components/Load';
 
-const imgSource = require('../../assets/logo_ioasys.png');
+const imgSource = require('../../assets/images/logo_ioasys.png');
 
 export function SignIn() {
   const navigation = useNavigation();
