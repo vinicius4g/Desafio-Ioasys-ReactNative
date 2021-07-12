@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
-import { useNavigation } from '@react-navigation/native';
 import { Alert, Modal, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import {
   StyledContainer,
   StyledAreaInputName,
@@ -13,6 +13,7 @@ import {
   StyledTitleList,
   StyledFlatListCards
 } from './styles';
+
 import { SearchContext } from '../../contexts/search';
 
 import { Header } from '../../components/Header';

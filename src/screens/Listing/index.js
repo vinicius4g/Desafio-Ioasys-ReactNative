@@ -1,11 +1,11 @@
 import React, { useContext, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
-
 import {
   StyledContainer,
   StyledTitleList,
   StyledFlatListCards
 } from './styles';
+
 import { AuthContext } from '../../contexts/auth';
 import { SearchContext } from '../../contexts/search';
 

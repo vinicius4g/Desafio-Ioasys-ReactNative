@@ -1,12 +1,13 @@
 import React from 'react';
 import { Platform, StatusBar } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import commonStyles from '../global/CommonStyles';
+import { MaterialIcons } from '@expo/vector-icons';
 
 import { Listing } from '../screens/Listing';
 import { Filter } from '../screens/Filter';
 import { Detail } from '../screens/Detail';
+
+import commonStyles from '../global/CommonStyles';
 
 const { Navigator, Screen } = createBottomTabNavigator();
 

@@ -1,14 +1,12 @@
 import React, { useState, useContext } from 'react';
-import { Feather } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
-
 import {
   Platform,
   TouchableWithoutFeedback,
   Keyboard,
   Alert
 } from 'react-native';
-
+import { Feather } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 import {
   StyledBackground,
   StyledContainer,
@@ -20,6 +18,7 @@ import {
   StyledButtonLink,
   StyledLinkText
 } from './styles';
+
 import { AuthContext } from '../../contexts/auth';
 
 import { InputSignIn } from '../../components/InputSignIn';

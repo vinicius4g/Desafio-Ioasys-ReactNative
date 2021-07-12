@@ -1,6 +1,6 @@
 import React, { useState, createContext, useContext } from 'react';
-import PropTypes from 'prop-types';
 import { Alert } from 'react-native';
+import PropTypes from 'prop-types';
 import { AuthContext } from './auth';
 import api from '../services/api';
 
